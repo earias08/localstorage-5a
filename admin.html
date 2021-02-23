@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- agregar los metat que faltan -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.2/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- fontawesome -->
+    <title>CRUD Funkopop</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar bg-dark navbar-dark navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Funkopop</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Inicio</a>
+                        </li>                      
+                        <li class="nav-item">
+                            <a class="nav-link" href="contacto.html">Contacto</a>
+                        </li>                      
+                        <li class="nav-item">
+                            <a class="nav-link active" href="admin.html">Administracion</a>
+                        </li>                      
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="container">
+        <section class="row">
+            <div class="col-md-10">
+                <h1 class="display-4 mt-5">Administracion de funko</h1>
+            </div>
+            <div class="col-md-2">
+                <img src="img/batmanAdmin.jpg" class='w-100' alt="logo funkopop batman">
+            </div>
+        </section>
+        <hr>
+        <section class="row my-4">
+            <div class="col-10">
+                <h3 class="text-center">Tabla de productos</h3>
+            </div>
+            <div class="col-2 d-flex justify-content-end">
+                <button class="btn btn-primary" id='btnAgregar'>Agregar</button>
+            </div>
+        </section>
+        <section class="table-responsive">
+            <table class="table" id='tablaProductos'>
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Num. Serie</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Opciones</th>
+                  </tr>
+                </thead>
+                <tbody id='tbodyProductos'>
+               
+                </tbody>
+              </table>
+        </section>
+    </main>
+
+    <!-- Modal Productos-->
+<div class="modal fade" id="modalProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Agregar Funkopop</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <form onsubmit="agregarFunkopop(event)" id='formProducto'>
+            <div class="mb-3">
+                <label class="form-label">Codigo</label>
+                <input type="number" placecholder='Ingrese el nombre del producto' id='codigoProducto' class="form-control"
+                onblur="validarCodigo(this)">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" placecholder='Ingrese el nombre del producto' id='nombreProducto' class="form-control"
+                onblur="validarCampoRequerido(this)">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Numero de Serie</label>
+                <input type="text" placecholder='Ingrese el nombre del producto' id='numSerie' class="form-control"
+                onblur="validarCampoRequerido(this)">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Categoria</label>
+                <input type="text" placecholder='Ingrese el nombre del producto' id='categoriaProducto' class="form-control"
+                onblur="validarCampoRequerido(this)">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Descripcion</label>
+                <!-- modificar por un textarea -->
+                <textarea type="text" placecholder='Ingrese el nombre del producto' id='descProducto' class="form-control"
+                onblur="validarCampoRequerido(this)"></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Imagen</label>
+                <input type="text" placecholder='Ingrese el nombre del producto' id='imgProducto' class="form-control"
+                onblur="validarCampoRequerido(this)">
+            </div>
+            <button class="btn btn-primary" type="submit">Guardar</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <footer>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+        <script src="js/validaciones.js"></script>
+        <script type="module" src="js/admin.js"></script>
+</body>
+
+</html>
